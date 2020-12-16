@@ -1,0 +1,67 @@
+
+<aside id="sidebar">
+    <!--分类-->
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list">
+
+                {% for r in r_post %}
+                    <li class="category-list-item">
+                        <a class="category-list-link" href="/category/{{ r.category }}">{{ r.category__cname }}</a>
+                        <span class="category-list-count">{{ r.c }}</span>
+                    </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+
+    <!--归档-->
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list">
+
+                {% for file in r_file %}
+                    <li class="archive-list-item">
+                        <a class="archive-list-link"
+                           href="/archive/{{ file.0|date:'Y' }}/{{ file.0|date:"m" }}">{{ file.0|date:'Y年m月' }}</a>
+                        <span class="archive-list-count">{{ file.1 }}</span>
+                    </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+
+    <!--近期文章-->
+    <div class="widget-wrap">
+        <h3 class="widget-title">近期文章</h3>
+        <div class="widget">
+            <ul>
+
+                {% for recp in r_recp %}
+                    <li>
+                        <a href="/posts/{{ recp.id }}" target="_blank">{{ recp.title|truncatechars:10 }}</a>
+                    </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="widget-wrap">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                <li>
+                    <a href="https://www.cnblogs.com/xxks" target="_blank">叫我流川枫</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</aside>

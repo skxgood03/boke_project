@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load myfilter %}
+{% block title %}详情页面{% endblock %}
+
+{% block left %}
+    <div id="main">
+        {% for p in posts %}
+            <article class="article article-type-post">
+                <div class="article-meta">
+                    <a class="article-date">
+                        <time>{{ p.created|date:'Y-m-d H:i:s' }}</time>
+                    </a>
+                    <div class="article-category">
+                        <a class="article-category-link" href="#" target="_blank">{{ p.category.cname }}</a>
+                    </div>
+                </div>
+                <div class="article-inner">
+                    <header class="article-header">
+                        <h1 itemprop="name">
+                            <a class="article-title" href="#" target="_blank">{{ p.title }}</a>
+                        </h1>
+                    </header>
+                    <div class="article-entry" itemprop="articleBody">
+                        <h2>前言</h2>
+                        <hr>
+                        {{ p.desc }}
+                        <hr>
+                        {{ p.content|md|safe }}
+                    </div>
+                    <footer class="article-footer">
+                        <a data-url="存放文章的url" class="article-share-link">分享</a>
+                        <ul class="article-tag-list">
+                            {% for t in post.tag.all %}
+
+                                <li class="article-tag-list-item">
+                                    <a class="article-tag-list-link" href="#">{{ t.tname }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </footer>
+                </div>
+            </article>
+        {% endfor %}
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone"
+                                                                                          data-cmd="qzone"></a><a
+                href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a
+                href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin" data-cmd="weixin"></a>
+        </div>
+        <script>window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "",
+                "bdMini": "2",
+                "bdPic": "",
+                "bdStyle": "0",
+                "bdSize": "16"
+            },
+            "share": {},
+            "image": {"viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16"},
+            "selectShare": {"bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"]}
+        };
+        with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+
+    </div>
+
+{% endblock %}
