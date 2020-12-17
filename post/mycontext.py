@@ -1,7 +1,7 @@
 from .models import *
 from django.db.models import *
 def GetRight(request):
-    # 1.获取分类信息
+    # 1.获取分类信息,c是记录数
     right_post = Post.objects.values('category__cname','category').annotate(c = Count('*')).order_by('-c')
     # 2.近期文章'
     right_recp = Post.objects.all().order_by('-category')[:3]
